@@ -78,14 +78,14 @@ namespace MedKit10
             textBox3.Text = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
             comboBox1.SelectedText = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
 
-            if (dataGridView1.SelectedRows[0].Cells[3].Value.ToString()== "Zażywam")
+          if (dataGridView1.SelectedRows[0].Cells[3].Value.ToString() =="Zażywam" )
             {
-                comboBox1.SelectedIndex = 1;
-            }
-            else
-            {
-                comboBox1.SelectedIndex = 0;
-            }
+             comboBox1.Text = "Tak";
+        }
+          else
+           {
+              comboBox1.Text = "Nie" ;
+           }
            
 
         }
@@ -105,6 +105,30 @@ namespace MedKit10
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          //  if (dataGridView1.SelectedRows[0].Cells[3].Value.ToString() == "Zażywam")
+           // {
+            //    comboBox1.Text = "Tak";
+          //  }
+           // else
+           // {
+            //    comboBox1.Text = "Nie";
+          //  }
+
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

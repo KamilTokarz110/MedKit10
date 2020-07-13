@@ -56,6 +56,9 @@
             this.medicamentsTableAdapter1 = new MedKit10.MedkitDBDataSet1TableAdapters.MedicamentsTableAdapter();
             this.medicamentsTableAdapter2 = new MedKit10.MedkitDBDataSet2TableAdapters.MedicamentsTableAdapter();
             this.medicamentsTableAdapter3 = new MedKit10.MedkitDBDataSet3TableAdapters.MedicamentsTableAdapter();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicamentsBindingSource4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medkitDBDataSet3)).BeginInit();
@@ -220,6 +223,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.ValueMember = "Zażywanie";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -252,11 +256,43 @@
             // 
             this.medicamentsTableAdapter3.ClearBeforeFill = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(135, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Nazwa";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(296, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Lek na :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(496, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Zażywam";
+            // 
             // MyMeds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox3);
@@ -311,5 +347,8 @@
         private MedkitDBDataSet3 medkitDBDataSet3;
         private System.Windows.Forms.BindingSource medicamentsBindingSource4;
         private MedkitDBDataSet3TableAdapters.MedicamentsTableAdapter medicamentsTableAdapter3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
