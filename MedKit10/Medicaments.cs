@@ -55,6 +55,8 @@ namespace MedKit10
 
 
             var sqlQuery = "";
+            
+
             if (IfMedExists(con, textBox1.Text))
             {
                 sqlQuery = @"UPDATE [Medicaments] SET [Nazwa] =  '" + textBox2.Text + "',[Ilość] = '" + textBox3.Text + "' ,[Zażywanie] = '" + status + "' ,[Pozostało] = '" + textBox5.Text + "',[Cena] = '" + textBox6.Text + "' ,[Opis] = '" + textBox7.Text + "' WHERE  [Id] ='" + textBox1.Text + "'";
@@ -103,7 +105,7 @@ namespace MedKit10
             // dtable.Columns["Id"].AutoIncrementStep = 1;
 
         }
-        private bool IfMedExists(SqlConnection con, string Id)
+        public bool IfMedExists(SqlConnection con, string Id)
         {
             SqlDataAdapter sda = new SqlDataAdapter("Select 1 From [Medicaments] WHERE [Id] ='" + Id + "'", con);
             DataTable dt = new DataTable();

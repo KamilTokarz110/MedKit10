@@ -41,7 +41,7 @@ namespace MedKit10
             notifyIcon1.Visible = false;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void timer1_Tick(object sender, EventArgs e)
         {
             currenttime = DateTime.Now.ToString("hh:mm:ss tt");
             label3.Text = currenttime;
