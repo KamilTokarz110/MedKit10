@@ -53,8 +53,8 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
-            this.medicamentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.medicamentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicamentsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -253,10 +253,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // medicamentsBindingSource
-            // 
-            this.medicamentsBindingSource.DataSource = typeof(MedKit10.Medicaments);
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(242, 392);
@@ -266,6 +262,10 @@
             this.button3.Text = "Resetuj";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // medicamentsBindingSource
+            // 
+            this.medicamentsBindingSource.DataSource = typeof(MedKit10.Medicaments);
             // 
             // Medicaments
             // 

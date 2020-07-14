@@ -46,31 +46,33 @@ namespace MedKit10
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
-            con.Open();
-            bool status = false;
-            if (comboBox1.SelectedIndex == 0)
+            if (Validation())
             {
-                status = true;
-            }
-            else
-            {
-                status = false;
-            }
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
+                con.Open();
+                bool status = false;
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
 
 
 
-            var sqlQuery = "";
-            
+                var sqlQuery = "";
 
-            if (IfMedExists(con, textBox1.Text))
-            {
-                sqlQuery = @"UPDATE [Medicaments] SET [Nazwa] =  '" + textBox2.Text + "',[Ilość] = '" + textBox3.Text + "' ,[Zażywanie] = '" + status + "' ,[Pozostało] = '" + textBox5.Text + "',[Cena] = '" + textBox6.Text + "' ,[Opis] = '" + textBox7.Text + "' WHERE  [Id] ='" + textBox1.Text + "'";
-                MessageBox.Show("Lek zakutalizowany");
-            }
-            else
-            {
-                sqlQuery = @"INSERT INTO[MedkitDB].[dbo].[Medicaments]
+
+                if (IfMedExists(con, textBox1.Text))
+                {
+                    sqlQuery = @"UPDATE [Medicaments] SET [Nazwa] =  '" + textBox2.Text + "',[Ilość] = '" + textBox3.Text + "' ,[Zażywanie] = '" + status + "' ,[Pozostało] = '" + textBox5.Text + "',[Cena] = '" + textBox6.Text + "' ,[Opis] = '" + textBox7.Text + "' WHERE  [Id] ='" + textBox1.Text + "'";
+                    MessageBox.Show("Lek zakutalizowany");
+                }
+                else
+                {
+                    sqlQuery = @"INSERT INTO[MedkitDB].[dbo].[Medicaments]
           ([Id]
            ,[Nazwa]
            ,[Ilość]
@@ -81,31 +83,31 @@ namespace MedKit10
      VALUES
 
 ('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "', '" + status + "', '" + textBox5.Text + "', '" + textBox6.Text + "', '" + textBox7.Text + "')";
-                MessageBox.Show("Lek o ID: " + textBox1.Text + " został dodany do bazy");
+                    MessageBox.Show("Lek o ID: " + textBox1.Text + " został dodany do bazy");
+                }
+
+
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+
+
+                object o = cmd.ExecuteNonQuery();
+
+
+
+
+
+
+                //Reading data
+                loadData();
+                button1.Text = "Dodaj";
+
+
+
+
+                con.Close();
+                ResetRecords();
             }
-
-
-
-            SqlCommand cmd = new SqlCommand(sqlQuery, con);
-
-
-            object o = cmd.ExecuteNonQuery();
-
-
-
-
-
-            
-            //Reading data
-            loadData();
-            button1.Text = "Dodaj";
-
-
-
-
-            con.Close();
-            ResetRecords();
-
 
             //  DataTable dtable = new DataTable();
             //dtable.Columns.AddRange(new DataColumn[1] {new DataColumn("Id") });
@@ -165,6 +167,7 @@ namespace MedKit10
             textBox3.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
             textBox5.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
             textBox6.Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
+            textBox7.Text = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
             comboBox1.SelectedText = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
 
             if (dataGridView1.SelectedRows[0].Cells[3].Value.ToString() == "Zażywam")
@@ -180,9 +183,10 @@ namespace MedKit10
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ShareSqlCom sqlCom = new ShareSqlCom();
+            if(Validation()){
+                ShareSqlCom sqlCom = new ShareSqlCom();
 
-           
+
                 SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
                 var sqlQuery = "";
                 if (IfMedExists(con, textBox1.Text))
@@ -198,22 +202,10 @@ namespace MedKit10
                     MessageBox.Show("Rekord nie istnieje");
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
                 //Reading data
                 loadData();
-            ResetRecords();
-
+                ResetRecords();
+            }
 
             
 
