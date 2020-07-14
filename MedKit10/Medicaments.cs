@@ -22,6 +22,12 @@ namespace MedKit10
             InitializeComponent();
         }
 
+        private void Medicaments_Load_1(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
+            loadData();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -60,7 +66,7 @@ namespace MedKit10
             if (IfMedExists(con, textBox1.Text))
             {
                 sqlQuery = @"UPDATE [Medicaments] SET [Nazwa] =  '" + textBox2.Text + "',[Ilość] = '" + textBox3.Text + "' ,[Zażywanie] = '" + status + "' ,[Pozostało] = '" + textBox5.Text + "',[Cena] = '" + textBox6.Text + "' ,[Opis] = '" + textBox7.Text + "' WHERE  [Id] ='" + textBox1.Text + "'";
-
+                MessageBox.Show("Lek zakutalizowany");
             }
             else
             {
@@ -75,6 +81,7 @@ namespace MedKit10
      VALUES
 
 ('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "', '" + status + "', '" + textBox5.Text + "', '" + textBox6.Text + "', '" + textBox7.Text + "')";
+                MessageBox.Show("Lek o ID: " + textBox1.Text + " został dodany do bazy");
             }
 
 
@@ -88,14 +95,16 @@ namespace MedKit10
 
 
 
-            MessageBox.Show("Lek o ID: " + textBox1.Text + " został dodany do bazy");
+            
             //Reading data
             loadData();
+            button1.Text = "Dodaj";
 
 
 
 
             con.Close();
+            ResetRecords();
 
 
             //  DataTable dtable = new DataTable();
@@ -122,7 +131,7 @@ namespace MedKit10
             SqlDataAdapter sda = new SqlDataAdapter("Select * From [MedkitDB].[dbo].[Medicaments]", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
-            dataGridView1.Rows.Clear();
+           dataGridView1.Rows.Clear();
             foreach (DataRow item in dt.Rows)
             {
                 int n = dataGridView1.Rows.Add();
@@ -150,6 +159,7 @@ namespace MedKit10
         private void dataGridView1_MouseDoubleClick_1(object sender, MouseEventArgs e)
         
         {
+            button1.Text = "Zaktualizuj";
             textBox1.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             textBox2.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
             textBox3.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
@@ -170,40 +180,85 @@ namespace MedKit10
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
-            var sqlQuery = "";
-            if (IfMedExists(con, textBox1.Text))
-            {
-                con.Open();
-                sqlQuery = @"DELETE FROM [Medicaments] WHERE  [Id] ='" + textBox1.Text + "'";
-                SqlCommand cmd = new SqlCommand(sqlQuery, con);
-                object o = cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            else
-            {
-                MessageBox.Show("Rekord nie istnieje");
-            }
+            ShareSqlCom sqlCom = new ShareSqlCom();
 
+           
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
+                var sqlQuery = "";
+                if (IfMedExists(con, textBox1.Text))
+                {
+                    con.Open();
+                    sqlQuery = @"DELETE FROM [Medicaments] WHERE  [Id] ='" + textBox1.Text + "'";
+                    SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                    object o = cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Rekord nie istnieje");
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //Reading data
+                loadData();
+            ResetRecords();
 
 
             
 
 
-       
+        }
 
 
 
-
-
-           
-            //Reading data
-            loadData();
-
-
-
-
+       public void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
+
+        public bool Validation()
+        {
+            bool result = false;
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text) && comboBox1.SelectedIndex > -1 && !string.IsNullOrEmpty(textBox5.Text) && !string.IsNullOrEmpty(textBox6.Text) &&
+                !string.IsNullOrEmpty(textBox7.Text)) {
+                result = true; 
+            }
+            return result;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ResetRecords()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+            textBox7.Clear();
+            comboBox1.SelectedIndex = -1;
+            button1.Text = "Dodaj";
+            textBox1.Focus();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ResetRecords();
+        }
     }
+
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using MedKit10;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,37 +9,68 @@ namespace MedKit10Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void Get_Con_True()
-        {
-
-            //Arrange
-            bool expected = true;
-            ShareSqlCom sqlCo = new ShareSqlCom();
-
-            //Act
-
-            bool actual = sqlCo.IfMedExists(1);
-
-            //Assert
-
-            Assert.AreEqual(expected, actual, "Zwraca fałsz ");
-        }
-        [TestMethod]
-        public void Get_Con_False()
+        public void If_Med_Ex()
         {
 
             //Arrange
             bool expected = false;
-            ShareSqlCom sqlCo = new ShareSqlCom();
+            // ShareSqlCom sqlCo = new ShareSqlCom();
+            SqlConnection con2 = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
+            Medicaments med2 = new Medicaments();
+
 
             //Act
 
-            bool actual = sqlCo.IfMedExists(-1);
+
+            bool actual = med2.IfMedExists(con2,"2");
 
             //Assert
 
-            Assert.AreEqual(expected, actual, "Zwraca Prawdę ");
-
+            Assert.AreEqual(expected, actual, "Zwraca prawde");
         }
+       
+        
+            [TestMethod]
+            public void If_Med_Ex_2()
+            {
+
+                //Arrange
+                bool expected = true;
+                // ShareSqlCom sqlCo = new ShareSqlCom();
+                SqlConnection con2 = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
+                Medicaments med2 = new Medicaments();
+
+
+                //Act
+
+
+                bool actual = med2.IfMedExists(con2, "1");
+
+                //Assert
+
+                Assert.AreEqual(expected, actual, "Zwraca false");
+            }
+
+
+
+            [TestMethod]
+        public void Validation_Test()
+        {
+            //Arrange
+            bool expected = false;
+            Medicaments med = new Medicaments();
+
+            //Act
+
+            bool actual = med.Validation();
+
+            //Assert
+
+            Assert.AreEqual(expected, actual, "Zwraca Prawdę");
+        }
+      
+
     }
+
+
 }
