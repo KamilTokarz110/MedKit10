@@ -15,6 +15,9 @@ using System.Security.Policy;
 
 namespace MedKit10
 {
+    /// <summary>
+    /// Klasa zawiera metody pozwalające na dodawanie rekordów do bazy danych z wartości wprowadzonych przez użytkownika
+    /// </summary>
     public partial class Medicaments : Form
     {
         public Medicaments()
@@ -43,7 +46,11 @@ namespace MedKit10
             comboBox1.SelectedIndex = 0;
             loadData();
         }
-
+        /// <summary>
+        /// Klasa dodawania oraz modyfikacji rekordów bazy danych
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (Validation())
@@ -60,10 +67,8 @@ namespace MedKit10
                     status = false;
                 }
 
-
-
                 var sqlQuery = "";
-
+                //Sprawdza czy lek istnieje w bazie, jeżeli tak to aktualizauje go z parametrów podanych przeż użytkownika
 
                 if (IfMedExists(con, textBox1.Text))
                 {
@@ -86,24 +91,14 @@ namespace MedKit10
                     MessageBox.Show("Lek o ID: " + textBox1.Text + " został dodany do bazy");
                 }
 
-
-
                 SqlCommand cmd = new SqlCommand(sqlQuery, con);
 
 
                 object o = cmd.ExecuteNonQuery();
 
-
-
-
-
-
                 //Reading data
                 loadData();
                 button1.Text = "Dodaj";
-
-
-
 
                 con.Close();
                 ResetRecords();
@@ -116,6 +111,14 @@ namespace MedKit10
             // dtable.Columns["Id"].AutoIncrementStep = 1;
 
         }
+        /// <summary>
+        /// Metoda sprawdza czy lek o wpisanym ID istnieje w bazie danych
+        /// </summary>
+        /// <param name="con"></param>
+        /// <param name="Id"></param>
+        /// <returns>
+        /// zwracam prawdę lub fałsz
+        /// </returns>
         public bool IfMedExists(SqlConnection con, string Id)
         {
             SqlDataAdapter sda = new SqlDataAdapter("Select 1 From [Medicaments] WHERE [Id] ='" + Id + "'", con);
@@ -127,6 +130,9 @@ namespace MedKit10
             else
                 return false;
         }
+       /// <summary>
+       /// Metoda zaczytująca dane do DataGrindView
+       /// </summary>
         public void loadData()
         {
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
@@ -157,7 +163,11 @@ namespace MedKit10
 
         }
       
-
+        /// <summary>
+        /// Aktualizowanie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_MouseDoubleClick_1(object sender, MouseEventArgs e)
         
         {
@@ -180,7 +190,11 @@ namespace MedKit10
             }
 
         }
-
+        /// <summary>
+        /// Usuwanie rekordów
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             if(Validation()){
@@ -202,7 +216,7 @@ namespace MedKit10
                     MessageBox.Show("Rekord nie istnieje");
                 }
 
-                //Reading data
+                //Wczytywanie danych
                 loadData();
                 ResetRecords();
             }
@@ -218,7 +232,12 @@ namespace MedKit10
         {
 
         }
-
+        /// <summary>
+        /// Walidacja danych
+        /// </summary>
+        /// <returns>
+        /// zwaraca prawdę lub fałsz
+        /// </returns>
         public bool Validation()
         {
             bool result = false;
@@ -233,7 +252,9 @@ namespace MedKit10
         {
 
         }
-
+        /// <summary>
+        /// Resetowanie pól 
+        /// </summary>
         private void ResetRecords()
         {
             textBox1.Clear();

@@ -11,6 +11,10 @@ using System.Windows.Forms;
 
 namespace MedKit10
 {
+
+    /// <summary>
+    /// Klasa zawiera wszystkie metody do logowania
+    /// </summary>
     public partial class Login : Form
     {
         public Login()
@@ -22,17 +26,25 @@ namespace MedKit10
         {
 
         }
-
+        /// <summary>
+        /// funckja resetujący text boxy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             textBox2.Clear();
             textBox1.Focus();
         }
-
+       /// <summary>
+       /// Sprawdzenie poprawności danych logowania
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            //TO-DO Check login and password
+            
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
             SqlDataAdapter sda = new SqlDataAdapter(@"SELECT *
   FROM [MedkitDB].[dbo].[Login] Where UserName ='" + textBox1.Text + "' and Password ='" + textBox2.Text + "'", con);

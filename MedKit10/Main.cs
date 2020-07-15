@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MedKit10
 {
+    /// <summary>
+    /// Klasa Main
+    /// </summary>
     public partial class Main : Form
     {
         private int childFormNumber = 0;

@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MedKit10
 {
+    /// <summary>
+    /// Klasa Reminder zawiera wszystkie metody do ustawienia oraz wyświetlenia przypomnienia
+    /// </summary>
     
     public partial class Reminder : Form
     {
@@ -34,19 +37,27 @@ namespace MedKit10
         {
 
         }
-
+      
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
             notifyIcon1.Visible = false;
         }
-
+        /// <summary>
+        /// Funkcja pobierająca czas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void timer1_Tick(object sender, EventArgs e)
         {
             currenttime = DateTime.Now.ToString("hh:mm:ss tt");
             label3.Text = currenttime;
         }
-
+        /// <summary>
+        /// Wyświetlanie przypomnienia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer2_Tick(object sender, EventArgs e)
         {
             messagetime = maskedTextBox1.Text + " " + comboBox1.Text;
@@ -64,18 +75,23 @@ namespace MedKit10
               
         }
 
-       // private void MessageBox(string text)
-       // {
-         //   throw new NotImplementedException();
-      //  }
-
+      
+        /// <summary>
+        /// Aktyność przycisków
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             timer2.Start();
             button1.Enabled = false;
             button2.Enabled = true;
         }
-
+        /// <summary>
+        /// Aktywność przycisków
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             timer2.Stop();
@@ -84,7 +100,11 @@ namespace MedKit10
             label4.Text = "";
 
         }
-
+        /// <summary>
+        /// Wyświetlanie powiadomienia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             notifyIcon1.Visible = true;

@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace MedKit10
 {
+    /// <summary>
+    /// Klasa zawiera funkcję do wyświetlania oraz wyszukiwania leku po nazwie
+    /// </summary>
     public partial class MyMeds : Form
     {
         public MyMeds()
@@ -20,6 +23,11 @@ namespace MedKit10
             InitializeComponent();
         }
 
+        /// <summary>
+        /// funkcja wczytująca dane z bazy do DataGrindView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MyMeds_Load(object sender, EventArgs e)
         {
             // TODO: Ten wiersz kodu wczytuje dane do tabeli 'medkitDBDataSet3.Medicaments' . Możesz go przenieść lub usunąć.
@@ -54,7 +62,11 @@ namespace MedKit10
         {
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
         }
-
+        /// <summary>
+        /// Funkcja Wywołania Reminder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -68,7 +80,11 @@ namespace MedKit10
             // a--;
             // dataGridView1.SelectedRows[0].Cells[2].Value = a.ToString();
         }
-
+        /// <summary>
+        /// Funkcja wypełnia textboxy po podwójnym kliknięciu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             
@@ -89,7 +105,11 @@ namespace MedKit10
            
 
         }
-
+        /// <summary>
+        /// Klasa wyszukiwania leku po jego opisie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-BQITBQR\\SQLEXPRESS;Initial Catalog=MedkitDB;Integrated Security=True");
@@ -111,14 +131,7 @@ namespace MedKit10
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          //  if (dataGridView1.SelectedRows[0].Cells[3].Value.ToString() == "Zażywam")
-           // {
-            //    comboBox1.Text = "Tak";
-          //  }
-           // else
-           // {
-            //    comboBox1.Text = "Nie";
-          //  }
+        
 
 
         }

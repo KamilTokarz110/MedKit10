@@ -68,21 +68,7 @@ namespace MedKit10Tests
 
             Assert.AreEqual(expected, actual, "Zwraca Prawdę");
         }
-        [TestMethod]
-        public void Validation_Test_2()
-        {
-            //Arrange
-            bool expected = true;
-            Medicaments med = new Medicaments();
-
-            //Act
-
-            bool actual = med.Validation();
-
-            //Assert
-
-            Assert.AreEqual(expected, actual, "Zwraca Fałsz");
-        }
+       
 
 
     }
