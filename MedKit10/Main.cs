@@ -128,5 +128,10 @@ namespace MedKit10
         {
             Application.Exit();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -139,8 +139,9 @@
             this.Controls.Add(this.statusStrip);
             this.IsMdiContainer = true;
             this.Name = "Main";
-            this.Text = "MDIParent1";
+            this.Text = "MainMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
+            this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.panel1.ResumeLayout(false);

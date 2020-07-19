@@ -114,8 +114,8 @@ namespace MedKit10
         /// <summary>
         /// Metoda sprawdza czy lek o wpisanym ID istnieje w bazie danych
         /// </summary>
-        /// <param name="con"></param>
-        /// <param name="Id"></param>
+        /// <param name="con">Connection String</param>
+        /// <param name="Id">ID leku podawane przez użytkownika </param>
         /// <returns>
         /// zwracam prawdę lub fałsz
         /// </returns>
